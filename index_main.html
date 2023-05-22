@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/styles.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js"></script>
+</head>
+<body>
+    <form id="csv-upload-form" class="getCSV">
+        <div class="dropzone" id="csv-dropzone">
+            <div class="dz-message">
+                Drop CSV file here
+            </div>
+        </div>
+        <button id="generate-btn">Generate Charts</button>
+    </form>
+
+    <div id="monitor">
+        <div id="aggregated-section">
+            <h2>Aggregated Section</h2>
+            <div id="aggregated-charts"></div>
+        </div>
+        <div id="individual-section">
+            <h2>Individual Section</h2>
+            <select id="device-select">
+                <option value="">Select Device</option>
+                <option value="1">Device 1</option>
+                <option value="2">Device 2</option>
+                <option value="3">Device 3</option>
+                <!-- Add more options as needed -->
+            </select>
+            <div id="individual-charts"></div>
+        </div>
+    </div>
+
+
+    <script>
+        // AgreeGated Section
+
+        agreegated_RPM = 'agreegated_RPM.html'
+        agreegated_duty_cycle = 'agreegated_duty_cycle.html'
+
+        // Individial Section
+
+        DeviceID = 1 // changed based on list
+
+        RPM_vs_TIME  = 'RPM_vs_TIME_{}.html'
+        DutyCycle_vs_Time = 'DutyCycle_vs_Time_{}.html'
+        TotalRotation_vs_RMP = 'TotalRotation_vs_RMP_{}.html'
+        OnTime_and_OffTime = 'OnTime_and_OffTime_{}.html'
+        RPM_distribution = 'RPM_distribution_{}.html'
+        K_mean = 'K_mean_{}.html'
+
+
+
+
+
+        const csvDropzone = new Dropzone("#csv-dropzone", {
+            url: "/upload",
+            acceptedFiles: ".csv",
+            maxFiles: 1,
+            init: function () {
+                this.on("success", function (file, response) {
+                    console.log(response);
+                    document.getElementById('aggregated-charts').innerHTML = ''; // Clear the aggregated charts div
+                    document.getElementById('individual-charts').innerHTML = ''; // Clear the individual charts div
+
+                    // Add the code to generate and append the aggregated charts
+                    const aggregatedChartFiles = response.aggregatedChartFiles; // Assuming the response contains the list of aggregated chart HTML files
+                    aggregatedChartFiles.forEach((chartFile) => {
+                        fetch(chartFile)
+                            .then((response) => response.text())
+                            .then((html) => {
+                                const chartContainer = document.createElement('div');
+                                chartContainer.innerHTML = html;
+                                document.getElementById('aggregated-charts').appendChild(chartContainer);
+                            });
+                    });
+                });
+            }
+        });
+
+        const generateBtn = document.getElementById('generate-btn');
+        generateBtn.addEventListener('click', function() {
+            // Trigger the generation of charts
+            csvDropzone.processQueue();
+        });
+    </script>
+    
+    <div class="footer"> @CopyRight 2023 Lakshit Kava </div>
+</body>
+</html>
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/styles.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js">
+      </script>
+</head>
+<body>
+    <form id="csv-upload-form" class="getCSV">
+        <div class="dropzone" id="csv-dropzone">
+            <div class="dz-message">
+                Drop CSV file here
+            </div>
+        </div>
+    </form>
+
+    <div id="monitor">
+
+    </div>
+
+    <script>
+        const csvDropzone = new Dropzone("#csv-dropzone", {
+            url: "/upload",
+            acceptedFiles: ".csv",
+            maxFiles: 1,
+            init: function () {
+                this.on("success", function (file, response) {
+                    console.log(response);
+                    document.getElementById('monitor',()=>{
+                        console.log('Success')
+                        // add the code that Load the monitor
+                    })
+                });
+            }
+        });
+    </script>
+    
+    <div class="footer"> @CopyRight 2023 Lakshit Kava </div>
+</body>
+</html> -->

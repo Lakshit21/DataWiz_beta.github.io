@@ -1,0 +1,67 @@
+>> agreegated_RPM
+
+"<p>The chart will analyze the RPM (rotation per minute) data. The chart is a bar chart that displays valid data items, excluding zero RPM values. The bar chart shows the maximum, average, and minimum performance for all the available devices.</p>
+<p>You can hover over the chart for better interaction.</p>"
+
+
+
+>> agreegated_duty_cycle
+
+"<p>The chart will analyze the Duty Cycle.</p>
+<p>We can find the total rotation time by following these steps:</p>
+<ul>
+  <li>Total rotation = RPM x total rotation time</li>
+  <li>Total rotation time = total rotation / RPM</li>
+</ul>
+<p>We are given on-time and off-time (assuming it is the total time).</p>
+<p>Total active time = on-time - off-time</p>
+<p>Based on some conditions:</p>
+<ul>
+  <li>Startup or shutdown time</li>
+  <li>Acceleration and deceleration time</li>
+  <li>Time to maintain equilibrium of the motor (assuming these devices have motors)</li>
+</ul>
+<p>Total active time should be greater than or equal to total rotation time.</p>
+<p>In total rotation time, the motor is working efficiently. This phenomenon can be used to measure the efficiency of the motor as well as the device.</p>
+<p>Duty Cycle = (total rotation time / total active time) * 100</p>
+<p>Duty Cycle is the percentage of active motor time. It indicates the productivity of the motor and the effectiveness of its duty.</p>
+<p>A higher Duty Cycle percentage means the motor is more efficient, while a lower Duty Cycle percentage means low motor utilization.</p>
+<p>The chart is a scatter line chart that displays valid data items, excluding zero RPM and items with > 100% Duty Cycle.</p>
+<p>You can hover over the chart for better interaction.</p>"
+
+
+>> RPM_vs_TIME
+"<p>The chart will analyze the variation of RPM (rotation per minute) over time.</p>
+<p>The chart is a scattered line chart that displays valid data items, excluding zero RPM and items with overperformed efficiency.</p>
+<p>You can hover over the chart for better interaction.</p>"
+
+
+
+>> DutyCycle_vs_Time
+"<p>The chart will analyze the variation of Duty Cycle over time.</p>
+<p>The chart is a scattered line chart that displays valid data items, excluding zero RPM and items with overperformed efficiency.</p>
+<p>You can hover over the chart for better interaction.</p>"
+
+
+>> TotalRotation_vs_RMP
+"<p>The chart will analyze the correlation between total_rotations and RPM values.</p>
+<p>The chart is a scattered line chart that displays valid data items, excluding zero RPM and items with overperformed efficiency.</p>
+<p>You can hover over the chart for better interaction.</p>"
+
+
+>> OnTime_and_OffTime
+"<p>The chart will analyze the correlation between On Time and Off Time values for the device.</p>
+<p>The chart is a stacked chart that displays valid data items, excluding zero RPM and items with overperformed efficiency.</p>
+<p>You can hover over the chart for better interaction.</p>"
+
+
+
+>> RPM_distribution
+"<p>The chart will analyze the probability distribution of RPM values.</p>
+<p>The chart is a histogram chart that includes all data items.</p>
+<p>You can hover over the chart for better interaction.</p>"
+
+
+>> K_mean
+"<p>This is the K-means clustering machine learning algorithm applied to RPM, total rotations, and total active time of the motor.</p>
+<p>You can hover over the chart for better interaction.</p>"
