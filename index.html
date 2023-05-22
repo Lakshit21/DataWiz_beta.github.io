@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beta Data Visualization</title>
+    <style> 
+        .footer {
+            position: fixed;
+            left: 0px;
+            bottom: 5px;
+            right: 0px; 
+            /* width: 95%; */
+            background-color: rgba(29,30,34,255);
+            color: #ee6a6e;
+            text-align: center;
+        }
+
+        .header{
+            position: fixed;
+            left: 0px;
+            top: 5px;
+            right: 0px; 
+            /* width: 95%; */ 
+            background-color: rgba(29,30,34,255);
+            color: rgba(245,161,58,255);
+            text-align: center;
+        }
+
+        body{
+            background-color: rgba(52,61,70,255);
+            color: rgba(226,228,229,255);
+        }
+
+        .screen{
+            margin-top: 3rem;
+        }
+
+        iframe {
+            width: 100%;
+            height: 400px; /* Adjust the height as needed */
+            border: none;
+            margin-bottom: 20px;
+        }
+
+        .chart-container {
+            margin: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+
+        /* Navbar styles */
+        .navbar {
+            position: fixed;
+            top: 1.45rem;
+            left:0;
+            right:0;
+            width: 100%;
+            background-color: rgba(29,30,34,255);
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .navbar li {
+            margin: 0 10px;
+        }
+
+        .navbar li a {
+            color: #7bac4d;
+            text-decoration: none;
+        }
+
+        .screen h1{
+            color: #E9A551;
+            text-align:center;
+        }
+
+        .screen h2{
+            color: #ADCDA3;
+            text-align: center;
+        }
+
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    
+    <div class="header"> <div style="background-color:rgba(62,73,82,255);width: 10rem; margin: auto;">DataWiz - β</div></div>
+
+    <nav class="navbar">
+        <ul>
+          <li><a href="#aggregated">Aggregated</a></li>
+          <li><a href="#device1">Device 1</a></li>
+          <li><a href="#device2">Device 2</a></li>
+          <li><a href="#device3">Device 3</a></li>
+        </ul>
+    </nav>
+
+
+    <div class="screen">
+        <h1 id="aggregated"> Agreegated Section </h1>
+        <!-- Agreegated RPM section -->
+        <div  class="chart-container">
+            <h2> Agreegated RPM </h2>
+            <div>
+                <p>The chart will analyze the RPM (rotation per minute) data. The chart is a bar chart that displays valid data items, excluding zero RPM values. The bar chart shows the maximum, average, and minimum performance for all the available devices.</p>
+                <p>You can hover over the chart for better interaction.</p>
+            </div>
+            <iframe src="images/agreegated_RPM.html"></iframe>
+        </div>
+
+        <!-- Agreegated Duty Cycle section -->
+        <div  class="chart-container">
+            <h2> Agreegated Duty Cycle </h2>
+            <div>
+                <p>The chart will analyze the Duty Cycle.</p>
+                <p>We can find the total rotation time by following these steps:</p>
+                <ul>
+                <li>Total rotation = RPM x total rotation time</li>
+                <li>Total rotation time = total rotation / RPM</li>
+                </ul>
+                <p>We are given on-time and off-time (assuming it is the total time).</p>
+                <p>Total active time = on-time - off-time</p>
+                <p>Based on some conditions:</p>
+                <ul>
+                <li>Startup or shutdown time</li>
+                <li>Acceleration and deceleration time</li>
+                <li>Time to maintain equilibrium of the motor (assuming these devices have motors)</li>
+                </ul>
+                <p>Total active time should be greater than or equal to total rotation time.</p>
+                <p>In total rotation time, the motor is working efficiently. This phenomenon can be used to measure the efficiency of the motor as well as the device.</p>
+                <p>Duty Cycle = (total rotation time / total active time) * 100</p>
+                <p>Duty Cycle is the percentage of active motor time. It indicates the productivity of the motor and the effectiveness of its duty.</p>
+                <p>A higher Duty Cycle percentage means the motor is more efficient, while a lower Duty Cycle percentage means low motor utilization.</p>
+                <p>The chart is a scatter line chart that displays valid data items, excluding zero RPM and items with > 100% Duty Cycle.</p>
+                <p>You can hover over the chart for better interaction.</p>
+            </div>
+            <iframe src="images/agreegated_duty_cycle.html"></iframe>
+        </div>
+        
+        
+    <section id="device1"> 
+        <h1> Device 1 </h1>
+        <!-- RPM vs TIME -->
+        <div class="chart-container">
+            <h2> RPM vs TIME for DeviceID 1 </h2>
+            <div>
+                <p>The chart will analyze the variation of RPM (rotation per minute) over time.</p>
+<p>The chart is a scattered line chart that displays valid data items, excluding zero RPM and items with overperformed efficiency.</p>
+<p>You can hover over the chart for better interaction.</p>
+            </div>
+            <iframe src="images/RPM_vs_TIME_1.html"></iframe>
+        </div>
+
+
+        <!-- DutyCycle vs Time -->
+        <div class="chart-container">
+            <h2> DutyCycle vs Time for DeviceID 1</h2>
+            <div>
+                <p>The chart will analyze the variation of Duty Cycle over time.</p>
+<p>The chart is a scattered line chart that displays valid data items, excluding zero RPM and items with overperformed efficiency.</p>
+<p>You can hover over the chart for better interaction.</p>
+            </div>
+            <iframe src="images/DutyCycle_vs_Time_1.html"></iframe>
+        </div>
+
+        <!-- TotalRotation vs RMP -->
+        <div class="chart-container">
+            <h2> TotalRotation vs RMP for DeviceID 1</h2>
+            <div>
+                <p>The chart will analyze the correlation between total_rotations and RPM values.</p>
+<p>The chart is a scattered line chart that displays valid data items, excluding zero RPM and items with overperformed efficiency.</p>
+<p>You can hover over the chart for better interaction.</p>
+            </div>
+            <iframe src="images/TotalRotation_vs_RMP_1.html"></iframe>
+        </div>
+
+        <!-- OnTime and OffTime -->
+        <div class="chart-container">
+            <h2> OnTime and OffTime for DeviceID 1</h2>
+            <div>
+                <p>The chart will analyze the correlation between On Time and Off Time values for the device.</p>
+<p>The chart is a stacked chart that displays valid data items, excluding zero RPM and items with overperformed efficiency.</p>
+<p>You can hover over the chart for better interaction.</p>
+            </div>
+            <iframe src="images/OnTime_and_OffTime_1.html"></iframe>
+        </div>
+
+        <!-- RPM distribution -->
+        <div class="chart-container">
+            <h2> RPM distribution for DeviceID 1 </h2>
+            <div>
+                <p>The chart will analyze the probability distribution of RPM values.</p>
+<p>The chart is a histogram chart that includes all data items.</p>
+<p>You can hover over the chart for better interaction.</p>
+            </div>
+            <iframe src="images/RPM_distribution_1.html"></iframe>
+        </div>
+
+        <!-- K mean -->
+        <div class="chart-container">
+            <h2> K mean for DeviceID 1</h2>
+            <div>
+                <p>This is the K-means clustering machine learning algorithm applied to RPM, total rotations, and total active time of the motor.</p>
+<p>You can hover over the chart for better interaction.</p>
+            </div>
+            <iframe src="images/K_mean_1.html"></iframe>
+        </div>
+    </section>
+
+
+    <section id="device2"> 
+        <h2> Device 2 </h2>
+        <!-- RPM vs TIME -->
+        <div class="chart-container">
+            <h2> RPM vs TIME for DeviceID 2 </h2>
+            <div>
+                <p>The chart will analyze the variation of RPM (rotation per minute) over time.</p>
+<p>The chart is a scattered line chart that displays valid data items, excluding zero RPM and items with overperformed efficiency.</p>
+<p>You can hover over the chart for better interaction.</p>
+            </div>
+            <iframe src="images/RPM_vs_TIME_2.html"></iframe>
+        </div>
+
+
+        <!-- DutyCycle vs Time -->
+        <div class="chart-container">
+            <h2> DutyCycle vs Time for DeviceID 2 </h2>
+            <div>
+                <p>The chart will analyze the variation of Duty Cycle over time.</p>
+<p>The chart is a scattered line chart that displays valid data items, excluding zero RPM and items with overperformed efficiency.</p>
+<p>You can hover over the chart for better interaction.</p>
+            </div>
+            <iframe src="images/DutyCycle_vs_Time_2.html"></iframe>
+        </div>
+
+        <!-- TotalRotation vs RMP -->
+        <div class="chart-container">
+            <h2> TotalRotation vs RMP for DeviceID 2  </h2>
+            <div>
+                <p>The chart will analyze the correlation between total_rotations and RPM values.</p>
+<p>The chart is a scattered line chart that displays valid data items, excluding zero RPM and items with overperformed efficiency.</p>
+<p>You can hover over the chart for better interaction.</p>
+            </div>
+            <iframe src="images/TotalRotation_vs_RMP_2.html"></iframe>
+        </div>
+
+        <!-- OnTime and OffTime -->
+        <div class="chart-container">
+            <h2> OnTime and OffTime for DeviceID 2 </h2>
+            <div>
+                <p>The chart will analyze the correlation between On Time and Off Time values for the device.</p>
+<p>The chart is a stacked chart that displays valid data items, excluding zero RPM and items with overperformed efficiency.</p>
+<p>You can hover over the chart for better interaction.</p>
+            </div>
+            <iframe src="images/OnTime_and_OffTime_2.html"></iframe>
+        </div>
+
+        <!-- RPM distribution -->
+        <div class="chart-container">
+            <h2> RPM distribution for DeviceID 2  </h2>
+            <div>
+                <p>The chart will analyze the probability distribution of RPM values.</p>
+<p>The chart is a histogram chart that includes all data items.</p>
+<p>You can hover over the chart for better interaction.</p>
+            </div>
+            <iframe src="images/RPM_distribution_2.html"></iframe>
+        </div>
+
+        <!-- K mean -->
+        <div class="chart-container">
+            <h2> K mean for DeviceID 2 </h2>
+            <div>
+                <p>This is the K-means clustering machine learning algorithm applied to RPM, total rotations, and total active time of the motor.</p>
+<p>You can hover over the chart for better interaction.</p>
+            </div>
+            <iframe src="images/K_mean_2.html"></iframe>
+        </div>
+    </section>
+
+    <section id="device3"> 
+        <h3> Device 3 </h3>
+        <!-- RPM vs TIME -->
+        <div class="chart-container">
+            <h3> RPM vs TIME for DeviceID 3 </h3>
+            <div>
+                <p>The chart will analyze the variation of RPM (rotation per minute) over time.</p>
+<p>The chart is a scattered line chart that displays valid data items, excluding zero RPM and items with overperformed efficiency.</p>
+<p>You can hover over the chart for better interaction.</p>
+            </div>
+            <iframe src="images/RPM_vs_TIME_3.html"></iframe>
+        </div>
+
+
+        <!-- DutyCycle vs Time -->
+        <div class="chart-container">
+            <h3> DutyCycle vs Time for DeviceID 3 </h3>
+            <div>
+                <p>The chart will analyze the variation of Duty Cycle over time.</p>
+<p>The chart is a scattered line chart that displays valid data items, excluding zero RPM and items with overperformed efficiency.</p>
+<p>You can hover over the chart for better interaction.</p>
+            </div>
+            <iframe src="images/DutyCycle_vs_Time_3.html"></iframe>
+        </div>
+
+        <!-- TotalRotation vs RMP -->
+        <div class="chart-container">
+            <h3> TotalRotation vs RMP for DeviceID 3 </h3>
+            <div>
+                <p>The chart will analyze the correlation between total_rotations and RPM values.</p>
+<p>The chart is a scattered line chart that displays valid data items, excluding zero RPM and items with overperformed efficiency.</p>
+<p>You can hover over the chart for better interaction.</p>
+            </div>
+            <iframe src="images/TotalRotation_vs_RMP_3.html"></iframe>
+        </div>
+
+        <!-- OnTime and OffTime -->
+        <div class="chart-container">
+            <h3> OnTime and OffTime for DeviceID 3</h3>
+            <div>
+                <p>The chart will analyze the correlation between On Time and Off Time values for the device.</p>
+<p>The chart is a stacked chart that displays valid data items, excluding zero RPM and items with overperformed efficiency.</p>
+<p>You can hover over the chart for better interaction.</p>
+            </div>
+            <iframe src="images/OnTime_and_OffTime_3.html"></iframe>
+        </div>
+
+        <!-- RPM distribution -->
+        <div class="chart-container">
+            <h3> RPM distribution for DeviceID 3 </h3>
+            <div>
+                <p>The chart will analyze the probability distribution of RPM values.</p>
+<p>The chart is a histogram chart that includes all data items.</p>
+<p>You can hover over the chart for better interaction.</p>
+            </div>
+            <iframe src="images/RPM_distribution_3.html"></iframe>
+        </div>
+
+        <!-- K mean -->
+        <div class="chart-container">
+            <h3> K mean for DeviceID 3</h3>
+            <div>
+                <p>This is the K-means clustering machine learning algorithm applied to RPM, total rotations, and total active time of the motor.</p>
+<p>You can hover over the chart for better interaction.</p>
+            </div>
+            <iframe src="images/K_mean_3.html"></iframe>
+        </div>
+    </section>
+
+
+    </div>
+
+    <script>
+        // $(document).ready(function() {
+        //   $("#charts").load("images/agreegated_RPM.html");
+        // });
+    </script>
+    <div class="footer"> @CopyRight 2023 Lakshit Kava - DataWiz - β version </div>
+</body>
+</html>
